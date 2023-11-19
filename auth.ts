@@ -16,6 +16,7 @@ export const authConfig = {
     },
     callbacks: {
          async signIn({ user}) {
+             console.log(user)
             if(!user.email) return false;
 
              const allowedEmails = process.env.ALLOWED_EMAILS?.split(',') ?? [];
