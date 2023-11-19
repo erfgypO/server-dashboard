@@ -15,12 +15,14 @@ export const authConfig = {
         signIn: '/login',
     },
     callbacks: {
-         async signIn({ user}) {
-             console.log(user)
-            if(!user.email) return false;
+         async signIn({ user, profile}) {
+
+             const email = user?.email ?? profile?.email ?? undefined;
+
+             if(!email) return false;
 
              const allowedEmails = process.env.ALLOWED_EMAILS?.split(',') ?? [];
-            return allowedEmails.includes(user.email!);
+            return allowedEmails.includes(email!);
         }
     }
 } satisfies NextAuthConfig;
