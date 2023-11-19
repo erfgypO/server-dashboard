@@ -45,7 +45,9 @@ export default function ContainerTable({ containers} : { containers: Container[]
                         </td>
                         <td className={'w-1/5'}>
                             <div>
-                            {container.Ports.filter(p => p.PublicPort && p.Type === "tcp").map(p => `${p.IP}:${p.PublicPort}:${p.PrivatePort}`).join(', ')}
+                            {container.Ports.filter(p => p.PublicPort && p.Type === "tcp")
+                                .map(p => `${p.IP}:${p.PublicPort}:${p.PrivatePort}`)
+                                .map(p => <div className={'badge gap-3 m-1 badge-info'} key={p}>{p}</div>)}
                             </div>
                         </td>
                         <td className={'w-1/5 text-center'}>
