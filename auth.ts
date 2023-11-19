@@ -15,9 +15,9 @@ export const authConfig = {
         signIn: '/login',
     },
     callbacks: {
-         async signIn({ user, profile}) {
+         async signIn({ profile}) {
 
-             const email = user?.email ?? profile?.email ?? undefined;
+             const email = profile?.email;
 
              if(!email) return false;
 
