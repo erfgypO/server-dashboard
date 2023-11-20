@@ -3,8 +3,6 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Link from "next/link";
 
-const inter = Inter({ subsets: ['latin'] })
-
 export const metadata: Metadata = {
   title: 'Server Dashboard',
 }
@@ -16,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-theme="">
-      <body className={inter.className}>
+      <body>
         <div className="navbar bg-base-300 mb-5">
           <Link href={"/dashboard"} className={"btn btn-ghost text-xl"}>Server Dashboard</Link>
         </div>

@@ -1,22 +1,18 @@
-"use client"
-
 import Container from "@/lib/models/container";
 import StateBadge from "@/components/dashboard/state-badge";
 import Link from "next/link";
 import ContainerActions from "@/components/dashboard/container-actions";
-import axios from "axios";
-import {useState} from "react";
+import {containerAction} from "@/lib/docker";
+import {revalidatePath} from "next/cache";
 
-export default function ContainerTable({ containers} : { containers: Container[] }) {
+export default async function ContainerTable({ containers} : { containers: Container[] }) {
 
-    const [items, setItems] = useState<Container[]>(containers);
-    async function onActionClicked() {
-        const response = await axios.get('/api/container');
-
-        if(response.status === 200) {
-            setItems(response.data);
-        }
+    async function action(id: string, action: "start" | "stop" | "restart") {
+        "use server";
+        await containerAction(id, action);
+        revalidatePath('/', 'page');
     }
+
 
     return <div>
         <div className={"overflow-auto"}>
@@ -31,7 +27,7 @@ export default function ContainerTable({ containers} : { containers: Container[]
             </tr>
             </thead>
             <tbody>
-            {items.map((container) => {
+            {containers.map((container) => {
                 return (
                     <tr key={container.Id}>
                         <td className={'w-1/5 link-accent'}>
@@ -51,7 +47,7 @@ export default function ContainerTable({ containers} : { containers: Container[]
                             </div>
                         </td>
                         <td className={'w-1/5 text-center'}>
-                            <ContainerActions id={container.Id} state={container.State} onActionClicked={onActionClicked} />
+                            <ContainerActions id={container.Id} state={container.State} dispatch={action} />
                         </td>
                     </tr>
                 )
