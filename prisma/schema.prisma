@@ -54,3 +54,18 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+model Stats {
+  id           String   @id @default(cuid())
+  cpuModel     String
+  cpuCoreCount Int
+  cpuUsage     Float
+  totalMemory  Float
+  usedMemory   Float
+  hostname     String
+  ip           String
+  arch         String
+  platform     String
+  uptime       Int
+  createdAt    DateTime @default(now())
+}

@@ -21,7 +21,7 @@ services:
     depends_on:
       - db
     env_file:
-      - .env.local
+      - .env
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
