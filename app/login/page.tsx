@@ -3,7 +3,7 @@ import {signIn} from "@/auth";
 export default function Page() {
     async function authenticate() {
         "use server"
-        await signIn('github', { redirectTo: '/dashboard' });
+        await signIn('github', { redirectTo: '/' });
     }
 
     return (

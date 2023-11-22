@@ -8,7 +8,6 @@ export async function GET(req: NextRequest, res: NextResponse) {
 
     if(!session) return NextResponse.json({}, {status: 401});
 
-    console.log('Fetching stats object in api');
     const stats = await getStatsObject();
     return NextResponse.json(stats);
 }
