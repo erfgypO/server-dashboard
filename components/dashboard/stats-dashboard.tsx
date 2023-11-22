@@ -63,13 +63,6 @@ export default function StatsDashboard({ initialStats }: { initialStats: ApiStat
                             </span>
                             <span className={"text-sm"}>Minutes</span>
                         </div>
-                        <div className={"flex flex-col"}>
-                            <span className={"countdown font-mono justify-center"}>
-                               { /* @ts-ignore */ }
-                                <span style={{"--value": stats.duration.seconds ?? 0}}></span>
-                            </span>
-                            <div className={"text-sm"}>Seconds</div>
-                        </div>
                         </div>
                     </div>
                 </div>
