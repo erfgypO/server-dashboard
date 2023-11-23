@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import {ApiStats} from "@/lib/models/apiStats";
 import axios from "axios";
 import Link from "next/link";
+import {ChevronRightIcon} from "@heroicons/react/20/solid";
 
 export default function StatsDashboard({ initialStats }: { initialStats: ApiStats }){
     const [stats, setStats] = useState(initialStats);
@@ -26,7 +27,9 @@ export default function StatsDashboard({ initialStats }: { initialStats: ApiStat
     return <div className={"card bg-base-300 shadow-2xl w-full mb-2"}>
         <Link href={"/stats"}>
             <div className={"card-body"}>
-                <h1 className={"card-title"}>Stats</h1>
+                <h1 className={"card-title"}>
+                    Stats
+                </h1>
             <div className={"stats stats-vertical lg:stats-horizontal shadow"}>
                 <div className={"stat place-items-center"}>
                     <div className={"stat-title"}>Core Count</div>
@@ -34,11 +37,11 @@ export default function StatsDashboard({ initialStats }: { initialStats: ApiStat
                 </div>
                 <div className={"stat place-items-center"}>
                     <div className={"stat-title"}>Core Usage</div>
-                    <div className={"stat-value"}>{stats.cpuUsage}%</div>
+                    <div className={"stat-value"}>{stats.cpuUsage.toFixed(2)}%</div>
                 </div>
                 <div className={"stat place-items-center"}>
                     <div className={"stat-title"}>Memory Usage</div>
-                    <div className={"stat-value"}>{stats.memoryUsage}%</div>
+                    <div className={"stat-value"}>{stats.usedMemory.toFixed(2)}%</div>
                 </div>
                 <div className={"stat place-items-center justify-center"}>
                     <div className={"stat-title"}>Uptime</div>

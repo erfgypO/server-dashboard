@@ -41,22 +41,26 @@ export default function ChartCard({ chartHeight, statsKey, title } : { chartHeig
     };
 
 
+    const bg = 'oklch(0.6569 0.196 275.75)';
 
-    const labels = chartStats.map(stat => {
-        const timestamp = new Date(stat.timestamp);
+    const cpuColor = {
+        border: 'rgb(117, 130, 255)',
+        background: 'rgba(117, 130, 255, 0.5)'
+    }
 
-        const hours = timestamp.getHours().toString().padStart(2, '0');
-        const minutes = timestamp.getMinutes().toString().padStart(2, '0');
-        const seconds = timestamp.getSeconds().toString().padStart(2, '0');
+    const memoryColor = {
+        border: 'rgb(0, 199, 181)',
+        background: 'rgba(0, 199, 181, 0.5)'
+    }
 
-        return `${hours}:${minutes}:${seconds}`;
-    });
+    const color = statsKey === "cpu" ? cpuColor : memoryColor;
+    const labels = chartStats.map(stat => new Date(stat.timestamp).toLocaleTimeString());
+
     const datasets = [{
         label: title,
-        // @ts-ignore
         data: chartStats.map(stat => statsKey === "cpu" ? stat.cpu : stat.memory),
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        borderColor: color.border,
+        backgroundColor: color.background,
         tension: 0.5,
     }];
 
@@ -64,9 +68,12 @@ export default function ChartCard({ chartHeight, statsKey, title } : { chartHeig
         labels,
         datasets,
     };
+
+
+    const currentUsage = chartStats[chartStats.length - 1][statsKey].toFixed(2);
     return <div className={"card bg-base-300 shadow-2xl w-full mb-2"}>
         <div className={"card-body"}>
-            <h1 className={"card-title"}>{ title }</h1>
+            <h1 className={"card-title"}>{ title }: {currentUsage}%</h1>
             <div>
                 <Line data={data} options={options} height={chartHeight ?? 400} />
             </div>

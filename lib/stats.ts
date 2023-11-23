@@ -64,7 +64,7 @@ export async function getChartStats(after: Date | undefined = undefined) {
     return stats.map((item) => {
         return {
             cpu: item.cpuUsage,
-            memory: (item.usedMemory / item.totalMemory) * 100,
+            memory: item.usedMemory,
             timestamp: item.createdAt,
         } as ChartStat;
     });

@@ -21,7 +21,7 @@ export function StatsProvider({ children, initialStats } : { children: ReactNode
                 console.log('Failed to chart read chart');
                 console.error(e);
             }
-        }, 5_000);
+        }, 2_500);
 
         return () => clearInterval(interval);
     });
