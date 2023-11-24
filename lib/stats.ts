@@ -35,6 +35,7 @@ export async function getChartStats(after: Date | undefined = undefined) {
         createdAt: true,
         usedMemory: true,
         totalMemory: true,
+        diskUsedPercent: true,
         cpuUsage: true,
     };
 
@@ -65,6 +66,7 @@ export async function getChartStats(after: Date | undefined = undefined) {
         return {
             cpu: item.cpuUsage,
             memory: item.usedMemory,
+            disk: item.diskUsedPercent,
             timestamp: item.createdAt,
         } as ChartStat;
     });

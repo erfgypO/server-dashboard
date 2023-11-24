@@ -32,16 +32,16 @@ export default function StatsDashboard({ initialStats }: { initialStats: ApiStat
                 </h1>
             <div className={"stats stats-vertical lg:stats-horizontal shadow"}>
                 <div className={"stat place-items-center"}>
-                    <div className={"stat-title"}>Core Count</div>
-                    <div className={"stat-value"}>{stats.cpuCoreCount}</div>
-                </div>
-                <div className={"stat place-items-center"}>
-                    <div className={"stat-title"}>Core Usage</div>
+                    <div className={"stat-title"}>CPU Load</div>
                     <div className={"stat-value"}>{stats.cpuUsage.toFixed(2)}%</div>
                 </div>
                 <div className={"stat place-items-center"}>
                     <div className={"stat-title"}>Memory Usage</div>
                     <div className={"stat-value"}>{stats.usedMemory.toFixed(2)}%</div>
+                </div>
+                <div className={"stat place-items-center"}>
+                    <div className={"stat-title"}>Disk Usage</div>
+                    <div className={"stat-value"}>{stats.diskUsedPercent.toFixed(2)}%</div>
                 </div>
                 <div className={"stat place-items-center justify-center"}>
                     <div className={"stat-title"}>Uptime</div>

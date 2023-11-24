@@ -56,14 +56,17 @@ model VerificationToken {
 }
 
 model Stats {
-  id           String   @id @default(cuid())
-  cpuCoreCount Int
-  cpuUsage     Float
-  totalMemory  Float
-  usedMemory   Float
-  hostname     String
-  arch         String
-  platform     String
-  uptime       Int
-  createdAt    DateTime @default(now())
+  id              String   @id @default(cuid())
+  cpuCoreCount    Int
+  cpuUsage        Float
+  totalMemory     Float
+  usedMemory      Float
+  hostname        String
+  arch            String
+  platform        String
+  uptime          Int
+  createdAt       DateTime @default(now())
+  diskSize        Int      @default(0)
+  diskUsed        Int      @default(0)
+  diskUsedPercent Float    @default(0)
 }
